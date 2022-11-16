@@ -1,0 +1,32 @@
+{
+    "apartment1": {
+        "address" : "2156 Ridge Ave, Evanston, IL 60201",
+        "rent" : "1320",
+        "dimensions" : "250 sq feet",
+        "utilities" : ["gas","internet"],
+        "bedrooms" : "2",
+        "bathrooms": "1",
+        "laundry" : "true",
+        "parking" : "true"
+    },
+    "apartment2": {
+        "address" : "2154 Sheridan Ave, Evanston, IL 60201",
+        "rent" : "120",
+        "dimensions" : "250 sq feet",
+        "utilities" : ["gas","internet"],
+        "bedrooms" : "1",
+        "bathrooms": "0",
+        "laundry" : "true",
+        "parking" : "true"
+    },
+    "apartment3": {
+        "address" : "2156 Foster St, Evanston, IL 60201",
+        "rent" : "320",
+        "dimensions" : "250 sq feet",
+        "utilities" : ["gas","internet"],
+        "bedrooms" : "1",
+        "bathrooms": "1",
+        "laundry" : "false",
+        "parking" : "true"
+    }
+}

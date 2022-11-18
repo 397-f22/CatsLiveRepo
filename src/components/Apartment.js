@@ -14,7 +14,7 @@ const Apartment = ({ data }) => {
                     <Card.Title>{data.address}</Card.Title>
                     <Card.Text>
                         <div style={{ display: 'inline-block', float: 'left' }}>
-                            ${data.rent} | {data.bedrooms}bd | {data.bathrooms}ba | {data.dimensions}
+                            ${data.rent} | {data.bedrooms}bd | {data.bathrooms}ba | {data.dimensions} |
                         </div>
                     </Card.Text>
                     <AptModal data={data} />

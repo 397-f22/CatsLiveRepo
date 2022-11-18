@@ -32,13 +32,7 @@ export default function AptModal({ data }) {
                 <Modal.Body>
                     <div style={{ display: 'inline-flex' }}>
                         <div style={{ width: 520 }}>
-                            <Card.Img variant="top" src="https://picsum.photos/300/120" style={{ width: 500, height: 250 }} />
-                            <Card.Img variant="top" src="https://picsum.photos/300/120" style={{ width: 250, height: 125, marginTop: 10 }} />
-                            <Card.Img variant="top" src="https://picsum.photos/300/120" style={{ width: 250, height: 125, marginTop: 10 }} />
-                            <Card.Img variant="top" src="https://picsum.photos/300/120" style={{ width: 250, height: 125, marginTop: 10 }} />
-                            <Card.Img variant="top" src="https://picsum.photos/300/120" style={{ width: 250, height: 125, marginTop: 10 }} />
-                            <Card.Img variant="top" src="https://picsum.photos/300/120" style={{ width: 250, height: 125, marginTop: 10 }} />
-                            <Card.Img variant="top" src="https://picsum.photos/300/120" style={{ width: 250, height: 125, marginTop: 10 }} />
+                            <Card.Img variant="top" src={data.img} />
                         </div>
                         <div style={{ width: 400 }}>
                             <div style={{ fontSize: '40px', fontWeight: "bold" }} >${data.rent}</div>

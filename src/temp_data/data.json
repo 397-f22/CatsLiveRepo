@@ -8,7 +8,8 @@
         "bathrooms": "1",
         "laundry": "true",
         "parking": "true",
-        "value": "4"
+        "value": "4",
+        "img": "https://images1.loopnet.com/i2/9koWUBOEpf9N2ITL10z1PtixXLq8aeqrNDSmq0G5qyE/112/image.jpg"
     },
     "apartment2": {
         "address" : "2154 Sheridan Ave Evanston, IL 60201",
@@ -19,7 +20,8 @@
         "bathrooms": "0",
         "laundry": "true",
         "parking": "true",
-        "value": "4"
+        "value": "4",
+        "img": "https://cdngeneral.rentcafe.com/dmslivecafe/3/77617/14%20FR%202%20%20resized.jpg?width=850&mode=pad&bgcolor=333333&quality=80"
     },
     "apartment3": {
         "address" : "2156 Foster St Evanston, IL 60201",
@@ -29,7 +31,8 @@
         "bedrooms" : "1",
         "bathrooms": "1",
         "laundry" : "false",
-        "parking" : "true"
+        "parking" : "true",
+        "img": "https://d229qcohg01jma.cloudfront.net/MRED/09/687/935/1.jpg"
     },
     "apartment4": {
         "address" : "1234 Ridge Ave Evanston, IL 60201",
@@ -39,6 +42,7 @@
         "bedrooms" : "1",
         "bathrooms": "1",
         "laundry" : "false",
-        "parking" : "true"
+        "parking" : "true",
+        "img": "https://resources.atproperties.com/images/MRED/11/448/282/62ba2eb535cce/1.jpg"
     }
 }

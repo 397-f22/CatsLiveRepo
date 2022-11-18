@@ -8,8 +8,8 @@ const Apartment = ({ data }) => {
     console.log(data)
     return (
         <div>
-            <Card style={{ width: '300px', height: '320px', float: 'left', margin: '10px', textAlign: 'center' }}>
-                <Card.Img variant="top" src="https://picsum.photos/200/120" />
+            <Card style={{ /*width: '20rem', height: '20rem', float: 'left', margin: '10px'*/}}>
+                <Card.Img variant="top" src={`https://picsum.photos/200/120?random=${Math.random()}`} />
                 <Card.Body>
                     <Card.Title>{data.address}</Card.Title>
                     <Card.Text>

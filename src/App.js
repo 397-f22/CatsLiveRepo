@@ -1,6 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import Apartment from './components/Apartment';
 import data from './temp_data/data.json'
@@ -11,11 +10,7 @@ function App() {
 
   return (
     <div className="App">
-       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<GuestRoute element={Login} />} />
-        </Routes>
-      </BrowserRouter>
+      <Login/>
       {Object.entries(data).map(([key,unit]) => {
         return <Apartment data = {unit} key={key}/>
       })}
@@ -24,10 +19,7 @@ function App() {
   );
 }
 
-function GuestRoute({ element: Element, ...rest }) {
-  const auth = getAuth();
-  const user = auth.currentUser;
-  return user ? <Navigate to="/home" /> : <Element />;
-}
+
+
 
 export default App;

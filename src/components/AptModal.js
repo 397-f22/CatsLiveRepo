@@ -14,7 +14,7 @@ export default function AptModal({ data }) {
     const { setVisible, bindings } = useModal();
     return (
         <div>
-            <Button auto shadow color="secondary" style={{ float: "right", height: '20px', width: '50px', top: '10px' }} onClick={() => setVisible(true)}>
+            <Button auto shadow color="secondary" style={{ float: "right", height: '20px', width: '50px', marginBottom: '10px' }} onClick={() => setVisible(true)}>
                 Details
             </Button>
             <Modal

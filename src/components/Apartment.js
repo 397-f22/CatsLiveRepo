@@ -14,7 +14,7 @@ const Apartment = ({ data }) => {
                     <Card.Img variant="top" src={data.img} style={{ width: '100%', height: '200px' }} />
                 </div>
                 <Card.Body>
-                    <Card.Title>{data.address}</Card.Title>
+                    <Card.Title>{data.name}</Card.Title>
                     <Card.Text>
                         <div style={{ display: 'inline-block', float: 'left' }}>
                             ${data.rent} | {data.bedrooms}bd | {data.bathrooms}ba | {data.dimensions} |

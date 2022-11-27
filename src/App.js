@@ -30,8 +30,8 @@ function App() {
     let arr = apartments.filter((e) => {
       return (
         (rent === "All" ? true : parseInt(e.rent) <= rent) &&
-        (bedrooms === "All" ? true : e.bedrooms === bedrooms) &&
-        (bathrooms === "All" ? true : e.bathrooms === bathrooms)
+        (bedrooms === "All" ? true : e.bedrooms >= bedrooms) &&
+        (bathrooms === "All" ? true : e.bathrooms >= bathrooms)
       );
     });
     setFiltered(arr);
@@ -82,10 +82,10 @@ function App() {
             }
           >
             <option value="All">All</option>
-            <option value="1"> 1</option>
-            <option value="2"> 2</option>
-            <option value="3"> 3</option>
-            <option value="4"> 4</option>
+            <option value="1">1 or more</option>
+            <option value="2">2 or more</option>
+            <option value="3">3 or more</option>
+            <option value="4">4 or more</option>
           </select>
           <label className="text-xl font-semibold" htmlFor="team">
             Bathrooms:
@@ -100,10 +100,10 @@ function App() {
             }
           >
             <option value="All">All</option>
-            <option value="1"> 1</option>
-            <option value="2"> 2</option>
-            <option value="3"> 3</option>
-            <option value="4"> 4</option>
+            <option value="1">1 or more</option>
+            <option value="2">2 or more</option>
+            <option value="3">3 or more</option>
+            <option value="4">4 or more</option>
           </select>
 
           <Login />

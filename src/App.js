@@ -1,5 +1,4 @@
 import "./App.css";
-import { getAuth } from "firebase/auth";
 import Apartment from "./components/Apartment";
 import Map from "./components/Map";
 import data from "./temp_data/data.json";
@@ -9,6 +8,7 @@ import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/Login";
 import { useEffect, useState } from "react";
+import { useDbData, useAuthState } from "./utilities/firebase"
 
 function App() {
   const [apartments, setApartments] = useState([]);
@@ -18,6 +18,10 @@ function App() {
     bedrooms: "All",
     bathrooms: "All",
   });
+
+  const user = useAuthState()[0];
+  const userEmail = user?.email.split("@")[0];
+  const [likedApts] = useDbData(`/${userEmail}/likedApts`);
 
   useEffect(() => {
     let arr = [];
@@ -114,7 +118,7 @@ function App() {
           {filtered.length > 0 ? (
             filtered.map((app, index) => (
               <Col>
-                <Apartment data={app} key={index} />
+                <Apartment data={app} index={index} ifLiked={likedApts?.index.includes(index) ? true : false} />
               </Col>
             ))
           ) : (

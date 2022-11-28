@@ -6,7 +6,7 @@ import LeafletGeocoder from './LeatletGeocoder';
 
 const Map = () => {
     return (
-        <div style = {{top: "60 px"}}>
+        <div style = {{marginTop: "60px"}}>
             <MapContainer center={[42.05, -87.67]} zoom={12} scrollWheelZoom={false}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

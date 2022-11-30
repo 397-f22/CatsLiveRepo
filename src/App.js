@@ -109,20 +109,24 @@ function App() {
           <Login />
         </div>
       </header>
-      <Container fluid>
-        <Row>
-          {filtered.length > 0 ? (
-            filtered.map((app, index) => (
-              <Col>
-                <Apartment data={app} key={index} />
-              </Col>
-            ))
-          ) : (
-            <div>No result found!</div>
-          )}
-        </Row>
-      </Container>
-      <Map />
+      <section className="main_section">
+        <Container className="map">
+          <Map />
+        </Container>
+        <div fluid className="apartments">
+          <Row className="row">
+            {filtered.length > 0 ? (
+              filtered.map((app, index) => (
+                <Col className="col">
+                  <Apartment data={app} key={index} />
+                </Col>
+              ))
+            ) : (
+              <div>No result found!</div>
+            )}
+          </Row>
+        </div>
+      </section>
     </div>
   );
 }

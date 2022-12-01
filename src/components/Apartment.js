@@ -37,15 +37,17 @@ const Apartment = ({ data, index, ifLiked }) => {
                 </div>
                 <Card.Body>
                     <Card.Title>
-                        {data.name}
-                        { user && <div onClick={() => {
-                            clickLike();
-                        }}> { ifLiked === false ?
-                                <Icon.SuitHeart />
-                                :
-                                <Icon.SuitHeartFill color="red" />
-                            }
-                        </div>}
+                        <div style={{display: "flex"}}>
+                            <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>{ data.name }</div>
+                            { user && <div style={{marginLeft: "auto", marginRight: "0"}} onClick={() => {
+                                clickLike();
+                            }}> { ifLiked === false ?
+                                    <Icon.SuitHeart />
+                                    :
+                                    <Icon.SuitHeartFill color="red" />
+                                }
+                            </div>}
+                        </div>
                     </Card.Title>
                     <Card.Text>
                         <div style={{ display: 'inline-block', float: 'left' }}>

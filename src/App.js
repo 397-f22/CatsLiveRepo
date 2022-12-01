@@ -1,5 +1,4 @@
 import "./App.css";
-import { getAuth } from "firebase/auth";
 import Apartment from "./components/Apartment";
 import Map from "./components/Map";
 import data from "./temp_data/data.json";
@@ -10,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/Login";
 
 import { useEffect, useState } from "react";
+import { useDbData, useAuthState } from "./utilities/firebase"
 
 function App() {
   const [apartments, setApartments] = useState([]);
@@ -19,6 +19,11 @@ function App() {
     bedrooms: "All",
     bathrooms: "All",
   });
+
+  const user = useAuthState()[0];
+  const userEmail = user?.email.split("@")[0];
+  const [likedApts] = useDbData(`/${userEmail}/likedApts`);
+  const [viewFavorites, setViewFavorites] = useState(false);
 
   useEffect(() => {
     let arr = [];
@@ -37,6 +42,23 @@ function App() {
     });
     setFiltered(arr);
   }, [apartments, filters]);
+
+  useEffect(() => {
+    if (viewFavorites === true) {
+      setFiltered(filtered.filter((ele, index) => likedApts?.index.includes(index)));
+    } else {
+      const { rent, bedrooms, bathrooms } = filters;
+      let arr = apartments.filter((e) => {
+        return (
+          (rent === "All" ? true : parseInt(e.rent) <= rent) &&
+          (bedrooms === "All" ? true : e.bedrooms === bedrooms) &&
+          (bathrooms === "All" ? true : e.bathrooms === bathrooms)
+        );
+      });
+      setFiltered(arr);
+    }
+  }, [viewFavorites]);
+
   return (
     <div className="App">
       <header
@@ -106,7 +128,15 @@ function App() {
             <option value="3">3 or more</option>
             <option value="4">4 or more</option>
           </select>
-
+          { user && <div onClick={() => {
+            if (viewFavorites === false) {
+              setViewFavorites(true);
+            } else {
+              setViewFavorites(false);
+            }
+          }} style={{color: "blue", textDecoration: "underline"}}>
+            { viewFavorites === false ? "View Favorite Apartments" : "View All Apartments" }
+          </div> }
           <Login />
         </div>
       </header>
@@ -115,7 +145,7 @@ function App() {
           {filtered.length > 0 ? (
             filtered.map((app, index) => (
               <Col>
-                <Apartment data={app} key={index} />
+                <Apartment data={app} index={index} ifLiked={likedApts?.index.includes(index) ? true : false} />
               </Col>
             ))
           ) : (

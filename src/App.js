@@ -149,7 +149,7 @@ function App() {
             {filtered.length > 0 ? (
               filtered.map((app, index) => (
                 <Col className="col">
-                  <Apartment data={app} key={index} />
+                  <Apartment data={app} index={index} ifLiked={likedApts?.index.includes(index) ? true : false} />
                 </Col>
               ))
             ) : (

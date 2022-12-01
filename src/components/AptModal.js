@@ -7,8 +7,12 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
+import LocalLaundryServiceIcon from '@mui/icons-material/LocalLaundryService';
+import Blur from "react-blur";
+
+//backgroundImage: `url(${data.img})`,
 
 export default function AptModal({ data }) {
     const { setVisible, bindings } = useModal();
@@ -22,41 +26,52 @@ export default function AptModal({ data }) {
                 width="1000px"
                 aria-labelledby="modal-title"
                 aria-describedby="modal-description"
+
                 {...bindings}
             >
-                <Modal.Header>
-                    <Text id="modal-title" size={18}>
-                        {data.address}
-                    </Text>
-                </Modal.Header>
-                <Modal.Body>
-                    <div style={{ display: 'inline-flex' }}>
-                        <div style={{ width: 520 }}>
-                            <Card.Img variant="top" src={data.img} />
-                        </div>
-                        <div style={{ width: 400 }}>
-                            <div style={{ fontSize: '40px', fontWeight: "bold" }} >${data.rent}</div>
+                <Blur img={data.img} blurRadius={20} enableStyles style={{
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                }}>
+                    <Modal.Header>
+                        <Text id="modal-title" size={18}>
+                            {data.address}
+                        </Text>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div style={{ display: 'inline-flex' }}>
+                            <div style={{ width: 520 }}>
+                                <Card.Img variant="top" src={data.img} />
+                            </div>
+                            <div style={{ width: 400 }}>
+                                <div style={{ fontSize: '40px', fontWeight: "bold" }} >${data.rent}</div>
 
-                            {data.bedrooms}bd | {data.bathrooms}ba | {data.dimensions}
-                            <br />
-                            <Rating name="read-only" value={data.value} readOnly />
-                            <br />
-                            <SimpleAccordion />
-                        </div>
-                    </div>
+                                {data.bedrooms}bd | {data.bathrooms}ba | {data.dimensions}
+                                <br />
+                                <Rating name="read-only" value={data.value} readOnly />
+                                <br />
+                                <SimpleAccordion data={data} />
+                                <br />
 
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button auto flat color="error" onClick={() => setVisible(false)}>
-                        Close
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+                            </div>
+
+                        </div>
+
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button auto flat color="error" onClick={() => setVisible(false)}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Blur>
+
+
+            </Modal >
         </div >
     );
 }
 
-function SimpleAccordion() {
+function SimpleAccordion({ data }) {
     return (
         <div>
             <Accordion>
@@ -69,6 +84,7 @@ function SimpleAccordion() {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
+                        <hr />
                         It is the best choise for NU student
                     </Typography>
                 </AccordionDetails>
@@ -83,12 +99,15 @@ function SimpleAccordion() {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
+                        <hr />
                         <LocalParkingIcon />
+                        {data.address ? <CheckIcon /> : <ClearIcon />}
                         <br />
-                        <CalendarMonthIcon />
                         <br />
-                        <AcUnitIcon />
+                        <LocalLaundryServiceIcon />
+                        {data.laundry ? <CheckIcon /> : <ClearIcon />}
                         <br />
+
                     </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -102,6 +121,7 @@ function SimpleAccordion() {
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
+                        <hr />
                         Northwestern University, Chicago University
                     </Typography>
                 </AccordionDetails>

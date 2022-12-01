@@ -3,14 +3,10 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import AptModal from './AptModal';
 import '../App.css'
-
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import AptModal from "./AptModal";
 import * as Icon from 'react-bootstrap-icons';
 import { useDbData, useDbUpdate, useAuthState } from '../utilities/firebase';
 
-const Apartment = ({ data, index, ifLiked }) => {
+const Apartment = ({ data, index, ifLiked, interestAdd, setInterestAdd}) => {
 
   const user = useAuthState()[0];
   const userEmail = user?.email.split("@")[0];
@@ -74,7 +70,7 @@ const Apartment = ({ data, index, ifLiked }) => {
               {data.dimensions} |
             </div>
           </Card.Text>
-          <AptModal data={data} />
+          <AptModal data={data} interestAdd={interestAdd} setInterestAdd={setInterestAdd}/>
         </Card.Body>
       </Card>
     </div>

@@ -24,6 +24,7 @@ function App() {
   const userEmail = user?.email.split("@")[0];
   const [likedApts] = useDbData(`/${userEmail}/likedApts`);
   const [viewFavorites, setViewFavorites] = useState(false);
+  const [interestAdd, setInterestAdd] = useState("");
 
   useEffect(() => {
     let arr = [];
@@ -149,7 +150,7 @@ function App() {
             {filtered.length > 0 ? (
               filtered.map((app, index) => (
                 <Col className="col">
-                  <Apartment data={app} index={index} ifLiked={likedApts?.index.includes(index) ? true : false} />
+                  <Apartment data={app} index={index} ifLiked={likedApts?.index.includes(index) ? true : false} interestAdd={interestAdd} setInterestAdd={setInterestAdd}/>
                 </Col>
               ))
             ) : (

@@ -11,11 +11,16 @@ import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import LocalLaundryServiceIcon from '@mui/icons-material/LocalLaundryService';
 import Blur from "react-blur";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import Form from 'react-bootstrap/Form';
+import { useEffect, useState } from "react";
 
-//backgroundImage: `url(${data.img})`,
 
-export default function AptModal({ data }) {
+export default function AptModal({ data , interestAdd, setInterestAdd}) {
     const { setVisible, bindings } = useModal();
+    const [tempState,setTempState] = useState("");
+
     return (
         <div>
             <Button auto shadow color="secondary" style={{ float: "right", height: '20px', width: '50px', marginBottom: '10px' }} onClick={() => setVisible(true)}>
@@ -29,7 +34,7 @@ export default function AptModal({ data }) {
 
                 {...bindings}
             >
-                <Blur img={data.img} blurRadius={20} enableStyles style={{
+                <Blur img={data.img} blurRadius={20}  enableStyles style={{
                     backgroundSize: 'cover',
                     backgroundRepeat: 'no-repeat',
                 }}>
@@ -51,6 +56,34 @@ export default function AptModal({ data }) {
                                 <Rating name="read-only" value={data.value} readOnly />
                                 <br />
                                 <SimpleAccordion data={data} />
+                                {
+                                interestAdd==="" ?
+                                    <div>
+                                        <Form>
+                                            <Form.Group  >
+                                            {/* <Form.Label> Interested Address</Form.Label> */}
+                                            <Form.Control type="address" placeholder="Enter interest address" onChange={(e) => {setTempState(e.target.value)}}/>
+        
+                                            </Form.Group>
+                                                <Button variant="primary"  onPress={()=> {setInterestAdd(tempState)}}>
+                                                    Submit
+                                            </Button>
+                                        </Form>
+                                    </div>
+                                : 
+                            
+                            <div className="map">
+                                <iframe
+                                    width = "100%"
+                                    height="300"
+                                    src={`https://www.google.com/maps/embed/v1/directions?key=AIzaSyAres6dxJqN_EEzqHrFIXPHg4tGVuSLERA&origin=${data.address.replace(" ","+")}&destination=${interestAdd.replace(" ","+")}&mode=walking`}
+                                    allowfullscreen>
+                                </iframe>
+                                <Button variant="primary"  onPress={()=> {setInterestAdd("")}}>
+                                    New Interest Address
+                                </Button>
+                            </div>
+                            }
                                 <br />
 
                             </div>
@@ -126,6 +159,7 @@ function SimpleAccordion({ data }) {
                     </Typography>
                 </AccordionDetails>
             </Accordion>
+            
         </div>
     );
 }

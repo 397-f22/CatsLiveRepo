@@ -140,7 +140,6 @@ function App() {
           <Login />
         </div>
       </header>
-<<<<<<< HEAD
       <section className="main_section">
         <Container className="map">
           <Map />
@@ -159,22 +158,6 @@ function App() {
           </Row>
         </div>
       </section>
-=======
-      <Container fluid>
-        <Row>
-          {filtered.length > 0 ? (
-            filtered.map((app, index) => (
-              <Col>
-                <Apartment data={app} index={index} ifLiked={likedApts?.index.includes(index) ? true : false} />
-              </Col>
-            ))
-          ) : (
-            <div>No result found!</div>
-          )}
-        </Row>
-      </Container>
-      <Map />
->>>>>>> 2e29d2322fba8bae484c518399d713480b901526
     </div>
   );
 }

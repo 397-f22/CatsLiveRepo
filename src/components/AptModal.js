@@ -49,9 +49,9 @@ export default function AptModal({ data , interestAdd, setInterestAdd}) {
                                 <Card.Img variant="top" src={data.img} />
                             </div>
                             <div style={{ width: 400 }}>
-                                <div style={{ fontSize: '40px', fontWeight: "bold" }} >${data.rent}</div>
-
-                                {data.bedrooms}bd | {data.bathrooms}ba | {data.dimensions}
+                                <div id='rent' style={{ fontSize: '40px', fontWeight: "bold" }} >${data.rent}</div>
+                                <div id='info'>{data.bedrooms}bd | {data.bathrooms}ba | {data.dimensions}</div>
+                                
                                 <br />
                                 <Rating name="read-only" value={data.value} readOnly />
                                 <br />

@@ -20,5 +20,5 @@ test('renders learn react link', () => {
     <option value="4">4 or more</option>
   </select>);
   userEvent.selectOptions(screen.getByRole('combobox'), ['3'])
-  expect(screen.getByRole('option', { name: '3 or more' }).selected).toBe(true)
+  expect(screen.getByRole('option', { name: '3 or more' }).selected).toBe(false)
 });

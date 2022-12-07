@@ -11,6 +11,8 @@ import Login from "./components/Login";
 import { useEffect, useState } from "react";
 import { useDbData, useAuthState } from "./utilities/firebase"
 
+import markerData from "../temp_data/positions.json";
+
 function App() {
   const [apartments, setApartments] = useState([]);
   const [filtered, setFiltered] = useState([]);
@@ -143,7 +145,7 @@ function App() {
       </header>
       <section className="main_section">
         <Container className="map">
-          <Map />
+          <Map markerData={markerData}/>
         </Container>
         <div fluid className="apartments">
           <Row className="row">

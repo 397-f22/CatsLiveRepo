@@ -19,8 +19,10 @@ function App() {
     bedrooms: "All",
     bathrooms: "All",
   });
+  const [liked, setLiked] = useState(null);
 
   const user = useAuthState()[0];
+  console.log(user);
   const userEmail = user?.email.split("@")[0];
   const [likedApts] = useDbData(`/${userEmail}/likedApts`);
   const [viewFavorites, setViewFavorites] = useState(false);
@@ -46,7 +48,7 @@ function App() {
 
   useEffect(() => {
     if (viewFavorites === true) {
-      setFiltered(filtered.filter((ele, index) => likedApts?.index.includes(index)));
+      setFiltered(filtered.filter((ele, index) => likedApts?.index.includes(index) || liked === index));
     } else {
       const { rent, bedrooms, bathrooms } = filters;
       let arr = apartments.filter((e) => {
@@ -129,7 +131,7 @@ function App() {
             <option value="3">3 or more</option>
             <option value="4">4 or more</option>
           </select>
-          { user && <div onClick={() => {
+          <div data-testid="favorite" onClick={() => {
             if (viewFavorites === false) {
               setViewFavorites(true);
             } else {
@@ -137,7 +139,7 @@ function App() {
             }
           }} style={{color: "blue", textDecoration: "underline"}}>
             { viewFavorites === false ? "View Favorite Apartments" : "View All Apartments" }
-          </div> }
+          </div>
           <Login />
         </div>
       </header>
@@ -150,7 +152,7 @@ function App() {
             {filtered.length > 0 ? (
               filtered.map((app, index) => (
                 <Col className="col">
-                  <Apartment data={app} index={index} ifLiked={likedApts?.index.includes(index) ? true : false} interestAdd={interestAdd} setInterestAdd={setInterestAdd}/>
+                  <Apartment data={app} index={index} ifLiked={likedApts?.index.includes(index) ? true : false} interestAdd={interestAdd} setInterestAdd={setInterestAdd} liked={liked} setLiked={setLiked}/>
                 </Col>
               ))
             ) : (

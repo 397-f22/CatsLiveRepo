@@ -6,7 +6,7 @@ import '../App.css'
 import * as Icon from 'react-bootstrap-icons';
 import { useDbData, useDbUpdate, useAuthState } from '../utilities/firebase';
 
-const Apartment = ({ data, index, ifLiked, interestAdd, setInterestAdd}) => {
+const Apartment = ({ data, index, ifLiked, interestAdd, setInterestAdd, liked, setLiked}) => {
 
   const user = useAuthState()[0];
   const userEmail = user?.email.split("@")[0];
@@ -14,6 +14,9 @@ const Apartment = ({ data, index, ifLiked, interestAdd, setInterestAdd}) => {
   const [apts] = useDbData(`/${userEmail}/likedApts`);
 
   const clickLike = () => {
+    if (!user) {
+        setLiked(index);
+    } else {
     let arr = [];
     if (apts) {
       for (let i = 0; i < apts.index.length; i++) {
@@ -27,8 +30,9 @@ const Apartment = ({ data, index, ifLiked, interestAdd, setInterestAdd}) => {
     } else {
       arr = arr.filter((ele) => ele !== index);
       likesByUser({ index: arr });
-    }
+    }}
   }
+  console.log(data)
 
   return (
     <div>
@@ -54,14 +58,16 @@ const Apartment = ({ data, index, ifLiked, interestAdd, setInterestAdd}) => {
           <Card.Title>
             <div style={{ display: "flex" }}>
               <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>{data.name}</div>
-              {user && <div style={{ marginLeft: "auto", marginRight: "0" }} onClick={() => {
+              <div style={{ marginLeft: "auto", marginRight: "0" }} data-testid={`apartment${index}`} className={
+                (ifLiked === false && liked !== index) ? "emptyHeart" : "fillHeart"
+              } onClick={() => {
                 clickLike();
-              }}> {ifLiked === false ?
+              }}> {(ifLiked === false && liked !== index) ?
                 <Icon.SuitHeart />
                 :
                 <Icon.SuitHeartFill color="red" />
                 }
-              </div>}
+              </div>
             </div>
           </Card.Title>
           <Card.Text>

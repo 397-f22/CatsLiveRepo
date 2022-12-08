@@ -29,6 +29,7 @@
     "react-mentions": "^4.4.7",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
+    "vitest": "^0.25.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
